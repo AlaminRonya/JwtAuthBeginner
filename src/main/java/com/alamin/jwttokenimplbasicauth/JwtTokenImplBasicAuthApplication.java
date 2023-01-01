@@ -1,9 +1,14 @@
 package com.alamin.jwttokenimplbasicauth;
 
+import com.alamin.jwttokenimplbasicauth.dto.request.BookDto;
+import com.alamin.jwttokenimplbasicauth.dto.request.PenDto;
 import com.alamin.jwttokenimplbasicauth.models.AppUser;
+import com.alamin.jwttokenimplbasicauth.models.Book;
 import com.alamin.jwttokenimplbasicauth.models.Role;
 import com.alamin.jwttokenimplbasicauth.repository.AppUserRepository;
 import com.alamin.jwttokenimplbasicauth.repository.RoleRepository;
+import com.alamin.jwttokenimplbasicauth.service.BookService;
+import com.alamin.jwttokenimplbasicauth.service.PenService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +33,39 @@ public class JwtTokenImplBasicAuthApplication {
                 Role user = new Role();
                 user.setName("USER");
                 repository.saveAll(List.of(admin, user));
+        };
+    }
+
+    @Bean
+    CommandLineRunner addBook(BookService service){
+        return args -> {
+            BookDto book = new BookDto();
+            book.setBookName("Core-Java");
+            book.setBooksAuthor("A N M Bazlur Rahman");
+            book.setDescription("Beginner");
+            book.setLanguage("Bangla");
+            book.setPrice(5000.0);
+            service.add(book);
+            book.setBookName("Advance-Java");
+            service.add(book);
+            book.setBookName("Web-Java");
+            service.add(book);
+        };
+    }
+    @Bean
+    CommandLineRunner addPen(PenService service){
+        return args -> {
+            PenDto pen = new PenDto();
+            pen.setPenName("Pin-Point");
+            pen.setCompanyName("Matador");
+            pen.setColor("Black");
+            pen.setDescription("Oil based gel ink & 0.6 mm NS tip with TC ball");
+            pen.setPrice(5.0);
+            service.add(pen);
+            pen.setCompanyName("Deli");
+            service.add(pen);
+            pen.setCompanyName("Linc");
+            service.add(pen);
         };
     }
 
