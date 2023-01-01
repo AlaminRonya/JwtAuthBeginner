@@ -1,4 +1,4 @@
-package com.alamin.jwttokenimplbasicauth.dto;
+package com.alamin.jwttokenimplbasicauth.dto.request;
 
 import lombok.Data;
 
