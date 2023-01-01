@@ -1,2 +1,9 @@
-package com.alamin.jwttokenimplbasicauth.dto;public class LoginDto {
+package com.alamin.jwttokenimplbasicauth.dto;
+
+import lombok.Data;
+
+@Data
+public class LoginDto {
+    private String username;
+    private String password;
 }
